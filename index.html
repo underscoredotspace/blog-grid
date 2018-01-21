@@ -4,48 +4,62 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <link href="https://fonts.googleapis.com/css?family=Quicksand|Source+Code+Pro:400,700|Source+Sans+Pro:400,700" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+  <link href="style.scss" rel="stylesheet" type="text/css" />
   <title>underscore . space</title>
 </head>
 <body>
-  <header>underscore . space</header>
-
-  <nav>
-    <a href="#">About</a>
-    <a href="#">Home</a>
-    <a href="#">Log in</a>
-  </nav>
-
-  <main>
-    <article class="post">
-      <h1>An HTML Winter</h1>
-      <div class="post-body">
-        <p>Sunt praesentium rerum repudiandae omnis. Sit esse dolores soluta. Voluptatem magni quae neque ea earum debitis blanditiis repellat. Veniam aliquid reiciendis exercitationem <code>const test = () => {}</code> placeat non. Eos ea aut blanditiis sunt. Aut tempore impedit iure aut laboriosam.</p>
-
-        <p>Et sed error aut voluptas sapiente. Et dolores et quia odit dicta nulla. Ipsa qui accusamus ipsam illo. Optio sit qui iusto magnam.</p>
-
-        <p>Sunt praesentium rerum repudiandae omnis. Sit esse dolores soluta. Voluptatem magni quae neque ea earum debitis blanditiis repellat. Veniam aliquid reiciendis exercitationem placeat non. Eos ea aut blanditiis sunt. Aut tempore impedit iure aut laboriosam.</p>
-
-        <p>Neque autem et et. Eos qui corporis quam iusto. Et eum facilis et ducimus et ut accusamus. Cumque nobis iure pariatur corporis. Voluptas facere ratione iste. Enim ut quaerat quae maxime tenetur similique modi recusandae.</p>
-      </div>
-      <div class="post-meta">Posted on <a href="#">28 December 2017</a></div>
-    </article>
-
-    <article class="post">
-        <h1>Post Title</h1>
-        <div class="post-body">
-          <p>Sunt praesentium rerum repudiandae omnis. Sit esse dolores soluta. Voluptatem magni quae neque ea earum debitis blanditiis repellat. Veniam aliquid reiciendis exercitationem placeat non. Eos ea aut blanditiis sunt. Aut tempore impedit iure aut laboriosam.</p>
+  <div class="wrapper">
+    <div id="logo">
+      <!-- <img src="http://via.placeholder.com/100x100"> -->
+    </div>
+    <header><span>underscore . space</span></header>
+    <nav>
+      <section>
+        <a href="#">About</a>
+        <a href="#">Blog</a>
+      </section>
   
-          <p>Et sed error aut voluptas sapiente. Et dolores et quia odit dicta nulla. Ipsa qui accusamus ipsam illo. Optio sit qui iusto magnam.</p>
+      <section>
+        <a href="#"><i class="twitter"></i></a>
+        <a href="#"><i class="instagram"></i></a>
+        <a href="#"><i class="github"></i></a>
+      </section>
+    </nav>
   
-          <p>Neque autem et et. Eos qui corporis quam iusto. Et eum facilis et ducimus et ut accusamus. Cumque nobis iure pariatur corporis. Voluptas facere ratione iste. Enim ut quaerat quae maxime tenetur similique modi recusandae.</p>
+    <main>
+    
+
+      <article class="post">
+
+        <h1 class="ng-binding">Obligatory First Post</h1>
+        <div data-ng-bind-html="blogpost.contentHtml" class="ng-binding">
+          <p>I made a blog in JavaScript. </p>
+          <h3 id="why">Why?</h3>
+          <p>Why anything? I've been learning JavaScript for a couple of years now and felt it was about time I documented what I was working on, and shared my experiences. </p>
+          <p>I tried WordPress, but it has a lot of visual cruft and due to how widely used it is, it's basically a massive attack surface waiting to happen. I tried Tumblr too, but I also hate how it feels. I want to be able to display code snippets without screenshots, so building my own felt right. That's how I did when I learned ASP. </p>
+          <pre><code><span class="hljs-function"><span class="hljs-title">alert</span><span class="hljs-params">(<span class="hljs-string">'Hello World!'</span>)</span></span></code></pre>
+          <h3 id="how">How?</h3>
+          <p>JavaScript and more JavaScript. The back-end is NodeJS with a MongoDB hosted by <a href="http://mlab.com">mLab</a>. Initially the back-end was <a href="https://golang.org/">Go</a>, but decided to move to JavaScript. Using <a href="https://glitch.com">Glitch</a> as my editor has been loads of fun, and means that I can develop completely using my Raspberry Pi (which struggles with VS Code). </p>
+          <p>The front-end is AngularJS, with <a href="https://github.com/showdownjs/showdown">Showdown</a> used to render MarkDown. <a href="https://github.com/isagalaev/highlight.js">HighlightJS</a> is used to style code snippets with a GitHub(ish) theme. </p>
+          <h3 id="todo">TODO</h3>
+          <p>Yeah, there's loads still to do: </p>
+          <ul>
+          <li>Editing</li>
+          <li>Deleting</li>
+          <li>Drafts</li>
+          </ul>
+          <p>But most importantly, I'm currently lacking tests. </p>
+          <p>If you'd like a look at my code, you can see it running on <a href="https://glitch.com/~quixotic-quill">Glitch</a> <strong>and</strong> you can remix it. The project is also in <a href="https://github.com/underscoredotspace/blogJS">GitHub</a>; if you see any issues please raise them!</p>
         </div>
-        <div class="post-meta">Posted on <a href="#">28 December 2017</a></div>
+        <div class="blog-post-date">
+          <a href="#!/post/58ed46af7d73bc00638a536b" data-ng-href="#!/post/58ed46af7d73bc00638a536b" class="ng-binding">11 April 2017</a>
+        </div>
       </article>
-  </main>
+    </main>
+  
+    <footer>&copy;2018 UNDERSCOREDOTSPACE Industries <span id="cat-face">🐱</span></footer>
+  </div>
 
-  <footer></footer>
   <script src="script.js"></script>
 </body>
 </html>

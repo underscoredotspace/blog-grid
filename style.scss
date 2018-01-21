@@ -1,0 +1,167 @@
+@import 'https://fonts.googleapis.com/css?family=Quicksand|Source+Code+Pro:400,700|Source+Sans+Pro:400,700';
+@import 'https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/sunburst.min.css';
+
+$c-head: rgba(0, 0, 0, 0.4);
+$c-body: #222426;
+$c-text: #f5f5f5;
+$c-pink: #ff69b4;
+$c-orange: #ffb469;
+$c-green: #69FFB4;
+$max-width: 750px;
+$break-big: 600px;
+
+body {
+  font-family: 'Source Sans Pro';
+  background: $c-body;
+  color: $c-text;
+  margin: 0;
+}
+
+.wrapper {
+  display: grid;
+  min-height: 100vh;
+  margin: 0 auto;
+}
+//mobile
+@media (max-width: $break-big) {
+  .wrapper {
+    grid-template-areas: 'logo head' 'nav nav' 'main main' 'foot foot';
+    grid-template-columns: 50px auto;
+    grid-template-rows: 50px 70px auto 50px; 
+  }
+
+  #logo > img {
+    display: none;
+    height: 50px;
+    width: auto;
+  }
+
+  header {
+    font-size: 1.5rem;
+  }
+
+  nav {
+    background: $c-head;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    padding-left: 50px;
+    > section {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-around;
+      > a {
+        padding: 0 10px;
+      }
+    }
+  }
+}
+//desktop
+@media (min-width: ($break-big + 1px)) {
+  .wrapper {
+    grid-template-areas: 'logo head' 'nav main' 'nav foot';
+    grid-template-columns: 100px minmax(auto, ($max-width - 100px));
+    grid-template-rows: 100px auto 50px;
+    max-width: $max-width;
+    min-width: 280px;
+  }
+
+  header {
+    font-size: 2.25rem;
+  }
+
+  nav {
+    margin: 15px auto;
+    > section {
+      margin-bottom: 20px;
+      text-align: center;
+      > a {
+        display: block;
+        padding: 5px 0;
+      }
+    }
+  }
+}
+
+#logo {
+  grid-area: logo;
+  background: $c-pink;
+  > img {   
+    display: block;
+  }
+}
+
+header {
+  grid-area: head;
+  display: grid;
+  align-items: center;
+  text-align: center;
+  font-family: 'Quicksand';
+  font-weight: bolder;
+  background: $c-head;
+}
+
+nav {
+  grid-area: nav;
+  > section > a {
+    color: $c-orange;
+  }
+}
+
+.icon {
+  height: 2em;
+  width: 2em;
+  fill: $c-green;
+}
+
+main {
+  grid-area: main;
+  margin-top: 30px;
+  padding: 0 30px;
+  text-align: justify;
+}
+
+footer {
+  grid-area: foot;
+  text-align: right;
+  padding: 10px 30px 10px 0;
+  font-size: 0.75rem;
+}
+
+a {
+  text-decoration: none;
+  color: $c-pink;
+  &:hover {
+    text-decoration: $c-green underline wavy;
+  }
+}
+
+p {
+  margin-top: 0;
+}
+
+h1, h2, h3, h4, h5 {
+  margin: 5px 0 0;
+}
+
+pre {
+  display:block;
+  padding:5px 10px;
+  overflow:auto;
+  will-change:transform
+ }
+ code,pre {
+  background:#000
+ }
+ code {
+  font-size:85%;
+  display:inline;
+  font-family:Fira Code,Source Code Pro,monospace
+ }
+ code:after,code:before {
+  content:"\00a0"
+ }
+ pre code:after,pre code:before {
+  content:normal
+ }
