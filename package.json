@@ -5,8 +5,8 @@
   "license": "CC-BY-4.0",
   "private": true,
   "scripts": {
-    "start": "parcel index.html",
-    "build": "parcel build index.html --public-url ./"
+    "start": "parcel app/index.html",
+    "build": "parcel build app/index.html --public-url ./"
   },
   "dependencies": {
     "babel-preset-env": "^1.6.1",
