@@ -5,8 +5,10 @@ $c-head: rgba(0, 0, 0, 0.4);
 $c-body: #222426;
 $c-text: #f5f5f5;
 $c-pink: #ff69b4;
-$c-orange: #ffb469;
-$c-green: #69FFB4;
+$c-orange: #ffb368;
+$c-yellow: #ffff68;
+$c-green: #b3ff68;
+$c-blue: #68b3ff;
 $max-width: 750px;
 $break-big: 600px;
 
@@ -27,7 +29,8 @@ body {
   .wrapper {
     grid-template-areas: 'logo head' 'nav nav' 'main main' 'foot foot';
     grid-template-columns: 50px auto;
-    grid-template-rows: 50px 70px auto 50px; 
+    grid-template-rows: 50px auto auto 50px; 
+    min-width: 270px;
   }
 
   #logo > img {
@@ -41,19 +44,25 @@ body {
   }
 
   nav {
+    display: grid;
+    grid-template-columns: auto minmax(2rem, 6rem);
+    padding: 10px 20px 10px 70px;
     background: $c-head;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    align-items: center;
-    padding-left: 50px;
-    > section {
-      display: flex;
-      flex-direction: row;
+    
+    > section.here {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+      grid-gap: 5px;
+      justify-items: start;
+      align-items: center;
+    }
+  
+    > section.there {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, 2rem);
       justify-content: space-around;
-      > a {
-        padding: 0 10px;
-      }
+      align-items: center;
+      text-align: center;
     }
   }
 }
@@ -104,8 +113,10 @@ header {
 
 nav {
   grid-area: nav;
-  > section > a {
-    color: $c-orange;
+  .here{
+    > a {
+      color: $c-orange;
+    }
   }
 }
 
