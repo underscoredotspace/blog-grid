@@ -4,7 +4,7 @@ $c-text: #f5f5f5;
 $c-pink: #ff69b4;
 $c-orange: #ffb368;
 $c-yellow: #ffff68;
-$c-green: #b3ff68;
+$c-green: #69FFB4;
 $c-blue: #68b3ff;
 $max-width: 750px;
 $break-big: 600px;
@@ -21,10 +21,11 @@ body {
   min-height: 100vh;
   margin: 0 auto;
 }
+
 //mobile
 @media (max-width: $break-big) {
   .wrapper {
-    grid-template-areas: 'logo head' 'nav nav' 'main main' 'foot foot';
+    grid-template-areas: 'logo head' 'ham nav' 'main main' 'foot foot';
     grid-template-columns: 50px auto;
     grid-template-rows: 50px auto auto 50px; 
     min-width: 270px;
@@ -40,17 +41,20 @@ body {
     font-size: 1.5rem;
   }
 
-  nav {
+  input#menuvis:checked ~ nav {
     display: grid;
+}
+
+  nav {
+    display: none;
     grid-template-columns: auto minmax(2rem, 6rem);
-    padding: 10px 20px 10px 70px;
+    padding: 10px 20px;
     background: $c-head;
     
     > .here {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
       grid-gap: 5px;
-      justify-items: start;
       align-items: center;
     }
   
@@ -77,7 +81,12 @@ body {
     font-size: 2.25rem;
   }
 
+  .menu-control {
+    display: none;
+  }
+
   nav {
+    display: grid;
     margin: 15px auto;
     > div {
       margin-bottom: 20px;
@@ -121,6 +130,15 @@ nav {
   height: 2em;
   width: 2em;
   fill: $c-green;
+}
+
+.menu-control {
+  grid-area: ham;
+  padding: 20px 10px;
+}
+
+input#menuvis {
+  display: none;
 }
 
 main {
