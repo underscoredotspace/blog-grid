@@ -1,4 +1,4 @@
-$c-head: rgba(0, 0, 0, 0.4);
+$c-head: #111;
 $c-body: #222426;
 $c-text: #f5f5f5;
 $c-pink: #ff69b4;
@@ -7,7 +7,7 @@ $c-yellow: #ffff68;
 $c-green: #69FFB4;
 $c-blue: #68b3ff;
 $max-width: 750px;
-$break-big: 600px;
+$break-big: 1600px;
 
 body {
   font-family: 'Source Sans Pro';
@@ -25,31 +25,59 @@ body {
 //mobile
 @media (max-width: $break-big) {
   .wrapper {
-    grid-template-areas: 'logo head' 'ham nav' 'main main' 'foot foot';
+    grid-template-areas: 'logo head' 'nav nav' 'ham ham' 'main main' 'foot foot';
     grid-template-columns: 50px auto;
-    grid-template-rows: 50px auto auto 50px; 
+    grid-template-rows: 50px auto 1.5rem auto 50px; 
     min-width: 270px;
   }
 
-  #logo > img {
-    display: none;
-    height: 50px;
-    width: auto;
+  #logo {
+    z-index: 1000;
   }
 
   header {
     font-size: 1.5rem;
+    z-index: 1000;
   }
 
   input#menuvis:checked ~ nav {
     display: grid;
-}
+    z-index: auto;
+    transform: translateY(0) scaleX(1);
+  }
+
+  input#menuvis:checked ~ .menu-control>label>.hamburger {
+    transform: scaleY(-1);
+  }
+
+  .menu-control {
+    border: solid black;
+    border-width: 1px 0;
+    background: $c-head;
+    height: 1em;
+    > label {
+      display: block;
+      height: 1em;
+      text-align: center;
+      > .hamburger {
+        height: 1em;
+        width: 1em;
+        fill: $c-text;
+      }
+    }
+  }
 
   nav {
-    display: none;
-    grid-template-columns: auto minmax(2rem, 6rem);
+    transform: translateY(-100%);
+    display: grid;
+    z-index: 0;
     padding: 10px 20px;
+    grid-template-columns: auto minmax(2rem, 6rem);
     background: $c-head;
+    box-shadow: inset 0 5px 20px black;
+    transition-duration: 0.3s;
+    transition-delay: 0.3s;
+    transition-property: transform scale;
     
     > .here {
       display: grid;
@@ -61,10 +89,15 @@ body {
     > .there {
       display: grid;
       grid-template-columns: repeat(auto-fill, 2rem);
+      margin-top: 5px;
       justify-content: space-around;
       align-items: center;
       text-align: center;
     }
+  }
+
+  main {
+    margin-top: 10px;
   }
 }
 //desktop
@@ -96,6 +129,10 @@ body {
         padding: 5px 0;
       }
     }
+  }
+
+  main {
+    margin-top: 30px;
   }
 }
 
@@ -134,7 +171,6 @@ nav {
 
 .menu-control {
   grid-area: ham;
-  padding: 20px 10px;
 }
 
 input#menuvis {
@@ -143,7 +179,6 @@ input#menuvis {
 
 main {
   grid-area: main;
-  margin-top: 30px;
   padding: 0 30px;
   text-align: justify;
 }
