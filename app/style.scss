@@ -51,8 +51,9 @@ body {
   }
 
   .menu-control {
-    border: solid black;
-    border-width: 1px 0;
+    border: solid rgba(0, 0, 0, 0.3);
+    box-shadow: inset 0 -1px 2px rgba(255, 255, 255, 0.2);
+    border-width: 0 0 1px 0;
     background: $c-head;
     height: 1em;
     > label {
@@ -69,7 +70,7 @@ body {
 
   nav {
     transform: translateY(-100%);
-    display: grid;
+    display: none;
     z-index: 0;
     padding: 10px 20px;
     grid-template-columns: auto minmax(2rem, 6rem);
