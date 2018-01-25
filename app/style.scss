@@ -7,7 +7,7 @@ $c-yellow: #ffff68;
 $c-green: #69FFB4;
 $c-blue: #68b3ff;
 $max-width: 750px;
-$break-big: 1600px;
+$break-big: 500px; //600px
 
 body {
   font-family: 'Source Sans Pro';
@@ -18,93 +18,120 @@ body {
 
 .wrapper {
   display: grid;
-  min-height: 100vh;
   margin: 0 auto;
 }
 
 //mobile
 @media (max-width: $break-big) {
   .wrapper {
-    grid-template-areas: 'logo head' 'nav nav' 'ham ham' 'main main' 'foot foot';
-    grid-template-columns: 50px auto;
-    grid-template-rows: 50px auto 1.5rem auto 50px; 
-    min-width: 270px;
-  }
-
-  #logo {
-    z-index: 1000;
-  }
-
-  header {
-    font-size: 1.5rem;
-    z-index: 1000;
-  }
-
-  input#menuvis:checked ~ nav {
     display: grid;
-    z-index: auto;
-    transform: translateY(0) scaleX(1);
-  }
-
-  input#menuvis:checked ~ .menu-control>label>.hamburger {
-    transform: scaleY(-1);
-  }
-
-  .menu-control {
-    border: solid rgba(0, 0, 0, 0.3);
-    box-shadow: inset 0 -1px 2px rgba(255, 255, 255, 0.2);
-    border-width: 0 0 1px 0;
-    background: $c-head;
-    height: 1em;
-    > label {
-      display: block;
-      height: 1em;
+    grid-template-columns: 2.5rem auto;
+    grid-template-rows: 2.5rem auto 2rem;
+    
+    #logo {
+      background: $c-pink;
+    }
+    
+    > header {
+      font-size: 1rem;
+      font-family: 'Quicksand';
       text-align: center;
-      > .hamburger {
-        height: 1em;
-        width: 1em;
-        fill: $c-text;
+      background-color: $c-head;
+      display: grid;
+      align-items: center;
+      padding-bottom: 2px;
+    }
+    
+    #logo, header {
+      z-index: 1;
+    }
+    
+    > input#menuvis {
+      display: none;
+      &:checked {
+        ~ #menu {
+          transform: translateY(0);
+        }
+  
+        ~ #menu>#menu-control>label>svg {
+          transform: scaleY(-1);
+        }
       }
     }
-  }
-
-  nav {
-    transform: translateY(-100%);
-    display: none;
-    z-index: 0;
-    padding: 10px 20px;
-    grid-template-columns: auto minmax(2rem, 6rem);
-    background: $c-head;
-    box-shadow: inset 0 5px 20px black;
-    transition-duration: 0.3s;
-    transition-delay: 0.3s;
-    transition-property: transform scale;
     
-    > .here {
+    #menu {
+      position: absolute;
+      top: 2.5rem;
+      left: 0;
+      width: 100vw;
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
-      grid-gap: 5px;
-      align-items: center;
-    }
+      grid-template-rows: auto 1rem;
+      transform: translateY(calc(-100% + 1rem));
+      transition-duration: 0.3s;
+      transition-property: transform;
+      > nav {
+        z-index: -1;
+        display: grid;
+        grid-template-columns: auto minmax(2rem, 6rem);
+        box-shadow: inset 0 5px 20px black;
+        background: $c-head;
+        padding: 10px 20px;
+        > .here {
+          display: grid;
+          grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
+          grid-gap: 5px;
+          align-items: center;
+          > a {
+            color: $c-orange;
+          }
+        }
+        
+        > .there {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, 2rem);
+          justify-content: space-around;
+          align-items: center;
+          text-align: center;
+        }
+      }
+      
+      #menu-control {
+        > label {
+          &:hover {
+            background: rgba(64,64,128,0.1);
+          }
   
-    > .there {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, 2rem);
-      margin-top: 5px;
-      justify-content: space-around;
-      align-items: center;
-      text-align: center;
+          display: block;
+          height: 1rem;
+          text-align: center;
+          > svg {
+            height: 1rem;
+            width: 1rem;
+            transition-duration: 0.3s;
+            transition-property: transform;
+          }
+        }
+      }
     }
-  }
-
-  main {
-    margin-top: 10px;
+    
+    main {
+      padding-top: 1rem;
+      margin: 0 20px;
+    }
+    
+    > footer {
+      text-align: right;
+      padding-top: 1rem;
+    }
+    
+    #menu, main, footer {
+      grid-column: 1/-1;
+    }
   }
 }
 //desktop
 @media (min-width: ($break-big + 1px)) {
   .wrapper {
-    grid-template-areas: 'logo head' 'nav main' 'nav foot';
     grid-template-columns: 100px minmax(auto, ($max-width - 100px));
     grid-template-rows: 100px auto 50px;
     max-width: $max-width;
@@ -115,7 +142,7 @@ body {
     font-size: 2.25rem;
   }
 
-  .menu-control {
+  #menu-control {
     display: none;
   }
 
@@ -133,20 +160,19 @@ body {
   }
 
   main {
-    margin-top: 30px;
+    margin: 30px 20px 0 20px;
+  }
+
+  footer {
+    grid-column: 1/-1;
   }
 }
 
 #logo {
-  grid-area: logo;
   background: $c-pink;
-  > img {   
-    display: block;
-  }
 }
 
 header {
-  grid-area: head;
   display: grid;
   align-items: center;
   text-align: center;
@@ -156,7 +182,6 @@ header {
 }
 
 nav {
-  grid-area: nav;
   .here{
     > a {
       color: $c-orange;
@@ -170,25 +195,17 @@ nav {
   fill: $c-green;
 }
 
-.menu-control {
-  grid-area: ham;
-}
-
 input#menuvis {
   display: none;
 }
 
 main {
-  grid-area: main;
-  padding: 0 30px;
   text-align: justify;
 }
 
 footer {
-  grid-area: foot;
   text-align: right;
-  padding: 10px 30px 10px 0;
-  // font-size: 0.75rem;
+  align-self: end;
 }
 
 a {
